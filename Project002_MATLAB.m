@@ -22,7 +22,7 @@ for i = 1:NTreat
     p = @(t) (i * 1/(sigma * (2 * pi)^(1/2)) * exp(-1 * (abs(tal - t)^2)/(2 * sigma^2)));
 end
 
-function solve = discretization(n)
+function solve = discretization(n, g0, h0)
 
     global p lambdaA lambdaK lambdaD;
      
@@ -30,6 +30,9 @@ function solve = discretization(n)
     
     g = diag(zeros(n));
     h = diag(zeros(n));
+    
+    g(1) = g0;
+    h(1) = h0;
     
     for i = 1:n
         g(i+1) = g(i) + h * (lambdaD * g(i) * (1 - g(i)) - lambdaA * g(i) - lambdaK * g(i) * f(i));
