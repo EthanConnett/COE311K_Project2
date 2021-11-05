@@ -19,23 +19,32 @@ b = 0.00005;
 
 for i = 1:NTreat
     tal = i * 10;
-    p = @(t) (i * 1/(sigma * (2 * pi)^(1/2)) * exp(-1 * (abs(tal - t)^2)/(2 * sigma^2)));
+    p_old = @(t) 0;
+    p = @(t) p_old(t) + (i * 1/(sigma * (2 * pi)^(1/2)) * exp((-1 * (abs(tal - t)^2)/(2 * sigma^2))));
+    p_old = p;
 end
 
-function solve = discretization(n, g0, h0)
+% for k = 0:10
+%     dt = 0.01 * T / 2^k
+%     discretization(dt, g0, f0);
+% end
+
+function solve = discretization(h, g0, f0)
 
     global p lambdaA lambdaK lambdaD;
-     
-    h = 1/n;
+    
+    n = int16(50 / h);
     
     g = diag(zeros(n));
-    h = diag(zeros(n));
+    f = diag(zeros(n));
     
     g(1) = g0;
-    h(1) = h0;
+    f(1) = f0;
     
     for i = 1:n
         g(i+1) = g(i) + h * (lambdaD * g(i) * (1 - g(i)) - lambdaA * g(i) - lambdaK * g(i) * f(i));
         f(i+1) = f(i) + h * (-1 * lambdaD * f(i) + p(i * h));
     end
+    
+    solve = 1;
 end

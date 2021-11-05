@@ -1,0 +1,9 @@
+function j = j_gen(sigma_vec,tau, g_vector)
+%J_GEN defines the cost function
+
+left_term = sum(sigma_vec^2);
+mid_term = sum(alpha*g_vector);
+right_term = beta*trap_int(dt, g_vector);
+
+end
+
