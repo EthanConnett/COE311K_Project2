@@ -1,4 +1,5 @@
 %% COE 311K Project 2
+clear all
 % dg / dt = lambdaP * g * (1 - g) - lambdaA * g - lambdaK * g * f
 % df / dt = -1 * lambdaD * f + p
 
@@ -24,19 +25,19 @@ for i = 1:NTreat
     p_old = p;
 end
 
-% for k = 0:10
-%     dt = 0.01 * T / 2^k
-%     discretization(dt, g0, f0);
-% end
+for k = 0:10
+    dt = 0.01 * T / 2^k;
+    [f, g] = discretization(dt, g0, f0);
+end
 
-function solve = discretization(h, g0, f0)
+function [fSolve, gSolve] = discretization(h, g0, f0)
 
     global p lambdaA lambdaK lambdaD;
     
-    n = int16(50 / h);
+    n = 50 / h;
     
-    g = diag(zeros(n));
-    f = diag(zeros(n));
+    g = zeros(n,1);
+    f = zeros(n,1);
     
     g(1) = g0;
     f(1) = f0;
@@ -46,5 +47,6 @@ function solve = discretization(h, g0, f0)
         f(i+1) = f(i) + h * (-1 * lambdaD * f(i) + p(i * h));
     end
     
-    solve = 1;
+    fSolve = f;
+    gSolve = g;
 end
