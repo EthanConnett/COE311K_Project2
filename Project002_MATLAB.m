@@ -25,7 +25,9 @@ for i = 1:NTreat
     p_old = p;
 end
 
-for k = 0:10
-    dt = 0.01 * T / 2^k;
-    [f, g] = discretization(dt, g0, f0);
-end
+%ek = errorG();
+
+% for k = 0:10
+%     dt = 0.01 * T / 2^k;
+%     [f, g] = discretization(dt, g0, f0);
+% end
