@@ -18,7 +18,8 @@ function ek = errorG()
         dt = 0.01 * T / 2^(k+1);
         [~, g] = discretization(dt, g0, f0);
         new = g(end);
-        e(k+1) = 100 * (new - old);
+        
+        e(k+1) = 100 * ((new - old) / old);
     end
     
     ek = e;
