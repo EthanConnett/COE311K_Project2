@@ -27,6 +27,7 @@ for i = 1:NTreat
     p_old = p;
 end
 
+<<<<<<< HEAD
 for k = 0:10
     dt = 0.01 * T / 2^k;
     [f, g] = discretization(dt, g0, f0);
@@ -40,6 +41,13 @@ end
 % Find Errors for given k's, exp in report how low k is no good
 
 % Fix k such that error is less than 1
+
+%ek = errorG();
+
+% for k = 0:10
+%     dt = 0.01 * T / 2^k;
+%     [f, g] = discretization(dt, g0, f0);
+% end
 
 %% Problem 2
 
