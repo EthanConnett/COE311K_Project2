@@ -43,11 +43,8 @@ end
 
 %% Problem 2
 
-% what is x again:
-t = 0;
-x = 0;
-
-g = @(t) t;
+% NOTE: need to turn g into a matlab funciton to make this easier
+g = @(x) x;
 J_orig = @(x) j_gen(x, a, b, g);
 
 % Initial guess
@@ -57,16 +54,16 @@ x_min = x(1);
 x_max = x(end);
 
 % Prof said not to change this
-tol_x = 1e-9;
-tol_fun = 1e-9;
-max_iter = 400;
+tolx = 1e-9;
+tolfun = 1e-9;
+maxiter = 400;
 
 tic
-[xopt, Jval, ~, ~, ~, ~, ~] = fmincon(J_orig, x0, [], [], [], [], ...
-                                x_min, x_max,[], ...
-                                optimset('TolX',tol_x, ...
-                                'TolFun', tol_fun, ...
-                                'MaxIter', max_iter, ...
+[xopt, Jval, ~, ~, ~, ~, ~] = fmincon(Jx, x0, [], [], [], [], ...
+                                xmin, xmax,[], ...
+                                optimset('TolX',tolx, ...
+                                'TolFun', tolfun, ...
+                                'MaxIter', maxiter, ...
                                 'Display','iter-detailed'));
 
 toc
@@ -76,15 +73,8 @@ disp('initial guess')
 disp(x0)
 disp('optimal parameters')
 
-% Compute solution using intial parameters
-[g0, f0, tum_init] = F(x0);
-
-% Compute solution using intial parameters
-[gopt, fopt, tum_opt] = F(x0);
+% Compute solution using optimal parameters
+[g0, f0, tum] = F(x0);
 
 % Plot
-plot(tum_int);
-hold on;
-plot(tim_out);
-legend("Intial guess", "Optimal");
-
+plot(tum);
