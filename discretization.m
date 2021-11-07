@@ -4,7 +4,7 @@ function [fSolve, gSolve] = discretization(h, g0, f0)
 
     global p lambdaA lambdaK lambdaD;
     
-    n = 50 / h
+    n = 50 / h;
     
     g = zeros(n,1);
     f = zeros(n,1);
