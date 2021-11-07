@@ -6,7 +6,7 @@
 function j_new=costFunctionNew(delta_vec, a, b, c, g_vec, f_vec, T);
 
 toxic_effects=sum(delta_vec.^2);                %first term of Jnew
-cellPopulation1=a*g_vec(T);                     %second term
+cellPopulation1=a*g_vec(end);                     %second term
 cellPopulation2=b*trap_int(dt, g_vec);          %third term
 cellPopulation3=c*trap_int(dt,f_vec);           %fourth term
 
