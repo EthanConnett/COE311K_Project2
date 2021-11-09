@@ -27,7 +27,7 @@ for i = 1:NTreat
     p_old = p;
 end
 
-<<<<<<< HEAD
+
 for k = 0:10
     dt = 0.01 * T / 2^k;
     [f, g] = discretization(dt, g0, f0);
@@ -52,17 +52,16 @@ end
 %% Problem 2
 
 % what is x again:
-t = 0;
-x = 0;
 
-g = @(t) t;
-J_orig = @(x) j_gen(x, a, b, g);
 
-% Initial guess
+
+J_orig = @(x) j_gen(x, a, b, g, dt);
+
+% Initial guess for 4 treatments with equal vol fractions
 x0 = [0.001, 0.001, 0.001, 0.001];
 
-x_min = x(1);
-x_max = x(end);
+x_min = [0,0,0,0];
+x_max = [0.01, 0.01, 0.01, 0.01];
 
 % Prof said not to change this
 tol_x = 1e-9;
@@ -83,12 +82,18 @@ toc
 disp('initial guess')
 disp(x0)
 disp('optimal parameters')
+disp(xopt)
 
 % Compute solution using intial parameters
 [g0, f0, tum_init] = F(x0);
 
 % Compute solution using intial parameters
 [gopt, fopt, tum_opt] = F(x0);
+
+%
+
+dt = 0.01 * T / 2^k;
+[f, g] = discretization(dt, g0, f0);
 
 % Plot
 plot(tum_int);
