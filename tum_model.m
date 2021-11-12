@@ -16,7 +16,7 @@ function [f, g, p, t] = tum_model(delta_vec, tau_vec, kappa, params)
     
     %since floating point error
     t = T/dt;
-    p = zeros(t+1, 1);f
+    p = zeros(t+1, 1);
     time = 0:dt:T;
     
     for ind = 1:t+1
