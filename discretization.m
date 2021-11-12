@@ -1,8 +1,8 @@
 %% Discretization Problem 1
 
-function [fSolve, gSolve] = discretization(h, g0, f0)
+function [fSolve, gSolve] = discretization(h, g0, f0, p)
 
-    global p lambdaA lambdaK lambdaD;
+    global lambdaA lambdaK lambdaD;
     
     n = 50 / h;
     
