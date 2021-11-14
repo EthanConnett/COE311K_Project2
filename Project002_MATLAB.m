@@ -84,7 +84,7 @@ toc
 disp('initial guess')
 disp(x0)
 disp('optimal parameters')
-disp(xopt)
+disp(x_opt)
 
 
 
